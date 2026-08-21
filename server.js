@@ -16,7 +16,7 @@ app.use(express.urlencoded({ extended: true }));
 // Connect to MongoDB
 connectDB();
 
-const urlIn = "https://same-platform.onrender.com";
+const urlIn = "https://casseta.onrender.com";
 const interval = 60000;
 
 function reloadWebsite() {
