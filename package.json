@@ -1,0 +1,22 @@
+{
+  "name": "casseta",
+  "version": "1.0.0",
+  "description": "Casseta — where music connects us",
+  "main": "server.js",
+  "scripts": {
+    "start": "nodemon server.js",
+    "dev": "nodemon server.js"
+  },
+  "dependencies": {
+    "axios": "^1.19.0",
+    "dotenv": "^17.4.2",
+    "ejs": "^3.1.10",
+    "express": "^4.19.2",
+    "express-rate-limit": "^8.6.2",
+    "mongoose": "^9.9.3",
+    "xss": "^1.0.15"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.14"
+  }
+}

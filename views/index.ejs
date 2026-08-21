@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+    <meta name="description" content="Casseta — where music connects us. A shared listening space.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Crimson+Text:ital,wght@0,400;0,600;1,400;1,600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/style.css">
+    <link rel="icon" href="/img/logo.jpg">
+
+    <style>
+        #yt-hidden-player {
+            position: absolute !important;
+            top: 0 !important;
+            left: 0 !important;
+            width: 200px !important;
+            height: 200px !important;
+            opacity: 0 !important;
+            pointer-events: none !important;
+            z-index: -999 !important;
+        }
+    </style>
+</head>
+<body>
+    <!-- Global Loader -->
+    <div id="global-loader" class="global-loader">
+        <img src="/img/logo.jpg" alt="Casseta Logo" class="gl-logo">
+        <div class="gl-text">LOADING CASSETA...</div>
+    </div>
+
+    <!-- Hidden YouTube iframe — injected by youtube-player.js -->
+    <div id="yt-hidden-player"></div>
+
+    <div class="app" id="app">
+
+        <!-- ── Center Stage ────────────────────────────────── -->
+        <main class="center-stage" id="center-stage">
+            <div class="scene-bg" id="scene-bg"></div>
+            <div class="scene-bg scene-bg-b" id="scene-bg-b"></div>
+            <div class="scene-overlay"></div>
+            <div class="scene-vignette"></div>
+
+            <img src="/img/logo.jpg" alt="Casseta Logo" class="brand-logo">
+
+            <div class="banner">
+                <div class="banner-inner">
+                    <span class="banner-sub">CURRENT CASSETTE</span>
+                    <h2 class="banner-title" id="banner-title">Loading...</h2>
+                </div>
+            </div>
+
+            <div class="now-playing-wrap">
+                <span class="np-label">Now Playing</span>
+                <h3 class="np-title" id="sp-title">Loading… ♡</h3>
+                <p class="np-artists" id="sp-artist">YouTube Playlist</p>
+            </div>
+
+            <!-- Cassette Tape -->
+            <div class="cassette-wrap" id="cassette-wrap" title="Click to change cassette" role="button" tabindex="0" aria-label="Change Cassette">
+                <div class="cassette" id="cassette">
+                    <div class="cassette-label">
+                        <div class="label-brand">
+                            <span>♦ TYPE I NORMAL POSITION ♦</span>
+                            <span class="eject-hint" style="position: absolute; right: 12px; top: 8px; font-size: 9px; cursor: pointer; color: #8a7a60; font-weight: bold;">⏏ EJECT</span>
+                        </div>
+                        <div class="label-song-name" id="cassette-title">Loading…</div>
+                        <div class="label-bottom-row">
+                            <span class="label-side" id="cassette-side">A</span>
+                            <div class="label-dots"><span></span><span></span><span></span></div>
+                            <span class="label-pos">60</span>
+                        </div>
+                    </div>
+                    <div class="cassette-reels">
+                        <div class="reel-housing">
+                            <div class="reel" id="reel-left">
+                                <div class="reel-hub">
+                                    <div class="reel-spoke"></div>
+                                    <div class="reel-spoke"></div>
+                                    <div class="reel-spoke"></div>
+                                    <div class="reel-hole"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tape-window">
+                            <div class="tape-window-inner"><div class="tape-strip"></div></div>
+                        </div>
+                        <div class="reel-housing">
+                            <div class="reel" id="reel-right">
+                                <div class="reel-hub">
+                                    <div class="reel-spoke"></div>
+                                    <div class="reel-spoke"></div>
+                                    <div class="reel-spoke"></div>
+                                    <div class="reel-hole"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cassette-bottom-edge">
+                        <div class="bottom-hole"></div>
+                        <div class="bottom-slot"></div>
+                        <div class="bottom-slot"></div>
+                        <div class="bottom-slot"></div>
+                        <div class="bottom-hole"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Progress -->
+            <div class="progress-section">
+                <span class="time-stamp" id="sp-current">0:00</span>
+                <div class="sp-progress-bar" id="sp-progress-bar" role="slider" aria-label="Song progress" tabindex="0">
+                    <div class="sp-progress-fill" id="sp-progress"></div>
+                    <div class="sp-progress-thumb" id="sp-thumb"></div>
+                </div>
+                <span class="time-stamp" id="sp-duration">0:00</span>
+            </div>
+
+            <!-- Controls -->
+            <div class="controls-row">
+                <button class="ctrl-btn ctrl-sm" id="sp-shuffle" aria-label="Shuffle">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 3 21 3 21 8"></polyline><line x1="4" y1="20" x2="21" y2="3"></line><polyline points="21 16 21 21 16 21"></polyline><line x1="15" y1="15" x2="21" y2="21"></line></svg>
+                </button>
+                <button class="ctrl-btn ctrl-sm" id="sp-prev" aria-label="Previous">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 6h2v12H6zm3.5 6 8.5 6V6z"/></svg>
+                </button>
+                <button class="ctrl-btn ctrl-play" id="sp-play" aria-label="Play">
+                    <svg id="sp-play-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                    <svg id="sp-pause-icon" viewBox="0 0 24 24" fill="currentColor" style="display:none"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+                </button>
+                <button class="ctrl-btn ctrl-sm" id="sp-next" aria-label="Next">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z"/></svg>
+                </button>
+                <button class="ctrl-btn ctrl-sm" id="sp-repeat" aria-label="Repeat">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="17 1 21 5 17 9"></polyline><path d="M3 11V9a4 4 0 0 1 4-4h14"></path><polyline points="7 23 3 19 7 15"></polyline><path d="M21 13v2a4 4 0 0 1-4 4H3"></path></svg>
+                </button>
+            </div>
+
+            <!-- Waveform -->
+            <div class="waveform-wrap">
+                <div class="waveform" id="waveform"></div>
+            </div>
+
+
+
+        </main>
+
+        <!-- Shelf Overlay -->
+        <div id="shelf-overlay" class="open"></div>
+
+        <!-- ── Cassette Shelf (right panel) ───────────────── -->
+        <aside class="cassette-shelf open" id="cassette-shelf" aria-label="Playlist selector">
+            <div class="shelf-header">
+                <!-- <span class="shelf-icon">📼</span> -->
+                <span class="shelf-title">Cassets</span>
+            </div>
+            <div class="shelf-list" id="shelf-list">
+                <% 
+                const minSlots = 8;
+                const totalSlots = Math.max(minSlots, playlists.length + (playlists.length % 2 === 0 ? 2 : 1));
+                for(let i = 0; i < totalSlots; i++) { 
+                    if (i < playlists.length) { 
+                        const pl = playlists[i];
+                %>
+                <div class="sc-slot">
+                    <button
+                        class="shelf-cassette <%= i === 0 ? 'shelf-cassette--active' : '' %>"
+                        data-index="<%= i %>"
+                        aria-label="Play <%= pl.name %>"
+                        style="--c-body: <%= pl.color %>; --c-accent: <%= pl.accent %>;"
+                    >
+                        <!-- Mini cassette body -->
+                        <div class="sc-body">
+                            <div class="sc-label">
+                                <div class="sc-label-top">♦ TYPE I ♦</div>
+                                <div class="sc-label-name"><%= pl.name %></div>
+                                <div class="sc-label-side"><%= pl.side %></div>
+                            </div>
+                            <div class="sc-reels">
+                                <div class="sc-reel-housing"><div class="sc-reel"><div class="sc-reel-hole"></div></div></div>
+                                <div class="sc-tape-window"><div class="sc-tape-inner"></div></div>
+                                <div class="sc-reel-housing"><div class="sc-reel"><div class="sc-reel-hole"></div></div></div>
+                            </div>
+                            <div class="sc-bottom-edge">
+                                <div class="sc-bottom-hole"></div>
+                                <div class="sc-bottom-slot"></div>
+                                <div class="sc-bottom-slot"></div>
+                                <div class="sc-bottom-slot"></div>
+                                <div class="sc-bottom-hole"></div>
+                            </div>
+                        </div>
+                        <div class="sc-name-tag"><%= pl.name %></div>
+                    </button>
+                    <!-- Wooden shelf plank below this cassette -->
+                    <div class="sc-plank"></div>
+                </div>
+                <% } else { %>
+                <div class="sc-slot sc-empty">
+                    <button class="shelf-cassette" style="visibility: hidden;">
+                        <div class="sc-body">
+                            <div class="sc-label">
+                                <div class="sc-label-top">♦ TYPE I ♦</div>
+                                <div class="sc-label-name">Empty</div>
+                                <div class="sc-label-side">A</div>
+                            </div>
+                            <div class="sc-reels">
+                                <div class="sc-reel-housing"><div class="sc-reel"><div class="sc-reel-hole"></div></div></div>
+                                <div class="sc-tape-window"><div class="sc-tape-inner"></div></div>
+                                <div class="sc-reel-housing"><div class="sc-reel"><div class="sc-reel-hole"></div></div></div>
+                            </div>
+                            <div class="sc-bottom-edge">
+                                <div class="sc-bottom-hole"></div>
+                                <div class="sc-bottom-slot"></div>
+                                <div class="sc-bottom-slot"></div>
+                                <div class="sc-bottom-slot"></div>
+                                <div class="sc-bottom-hole"></div>
+                            </div>
+                        </div>
+                        <div class="sc-name-tag">Empty</div>
+                    </button>
+                    <div class="sc-plank"></div>
+                </div>
+                <% } } %>
+            </div>
+        </aside>
+
+    </div><!-- /.app -->
+
+
+
+    <!-- Toast Notification Container -->
+    <div id="toast-container" class="toast-container"></div>
+
+    <!-- Pass playlists data to client -->
+    <script>
+        const PLAYLISTS    = <%- JSON.stringify(playlists) %>;
+        const YT_PLAYLIST_ID = PLAYLISTS[0].id;
+    </script>
+    <script src="/youtube-player.js"></script>
+</body>
+</html>
