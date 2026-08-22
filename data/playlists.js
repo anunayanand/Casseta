@@ -164,6 +164,17 @@ const PLAYLISTS = [
         bgDesktop: '/img/bg_navratri_desk.png',
         bgMobile:  '/img/bg_navratri_phone.png',
     },
+    {
+            id: process.env.YT_PLAYLIST_BARTAN_TIME || 'PLKDoMVtNo-6k',
+            name: 'Bartan Time',
+            side: 'E',
+            color: '#0ea5e9', 
+            accent: '#38bdf8', 
+            bgTint: 'rgba(14, 165, 233, 0.25)',
+            bgFilter: 'sepia(20%) brightness(0.65) saturate(120%) hue-rotate(180deg)',
+            bgDesktop: '/img/bg_bartan_time_desk.png',
+            bgMobile: '/img/bg_bartan_time_phone.png',
+    }
 ];
 
 module.exports = PLAYLISTS;

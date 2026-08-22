@@ -12,35 +12,21 @@ const addPlaylists = async () => {
         await mongoose.connect(process.env.MONGODB_URI);
         console.log('Connected to MongoDB');
 
-        const roadTrip = new Playlist({
-            id: process.env.YT_PLAYLIST_ROAD_TRIP || 'PLPtRlMRuJkHE',
-            name: 'Road Trip',
-            side: 'C',
-            color: '#e76f51',
-            accent: '#f4a261',
-            bgTint: 'rgba(231,111,81, 0.25)',
-            bgFilter: 'sepia(30%) brightness(0.6) saturate(140%) hue-rotate(15deg)',
-            bgDesktop: '/img/bg_road_trip_desk.png',
-            bgMobile: '/img/bg_road_trip_phone.png',
+
+        const bartanTime = new Playlist({
+            id: process.env.YT_PLAYLIST_BARTAN_TIME || 'PLKDoMVtNo-6k',
+            name: 'Bartan Time',
+            side: 'E',
+            color: '#0ea5e9', // Sky blue
+            accent: '#38bdf8', // Lighter blue
+            bgTint: 'rgba(14, 165, 233, 0.25)',
+            bgFilter: 'sepia(20%) brightness(0.65) saturate(120%) hue-rotate(180deg)',
+            bgDesktop: '/img/bg_bartan_time_desk.png',
+            bgMobile: '/img/bg_bartan_time_phone.png',
         });
 
-        const navratri = new Playlist({
-            id: process.env.YT_PLAYLIST_NAVRATRI || 'PLCxkXauuDzs0',
-            name: 'Navratri & Dandiya',
-            side: 'D',
-            color: '#d90429',
-            accent: '#ef233c',
-            bgTint: 'rgba(217,4,41, 0.25)',
-            bgFilter: 'sepia(40%) brightness(0.55) saturate(150%) hue-rotate(340deg)',
-            bgDesktop: '/img/bg_navratri_desk.png',
-            bgMobile: '/img/bg_navratri_phone.png',
-        });
-
-        await roadTrip.save();
-        console.log('Road Trip playlist added to DB');
-
-        await navratri.save();
-        console.log('Navratri & Dandiya playlist added to DB');
+        await bartanTime.save();
+        console.log('Bartan Time playlist added to DB');
 
         mongoose.connection.close();
         console.log('Done! Disconnected from MongoDB');

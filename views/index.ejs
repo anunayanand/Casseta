@@ -159,7 +159,7 @@
             <div class="shelf-list" id="shelf-list">
                 <% 
                 const minSlots = 8;
-                const totalSlots = Math.max(minSlots, playlists.length + (playlists.length % 2 === 0 ? 2 : 1));
+                const totalSlots = Math.max(minSlots, playlists.length + (playlists.length % 2 === 0 ? 0 : 1));
                 for(let i = 0; i < totalSlots; i++) { 
                     if (i < playlists.length) { 
                         const pl = playlists[i];
